@@ -2,12 +2,43 @@ import React, { Component } from 'react';
 import { RobotConnection } from "./RobotConnection";
 import EmojiSequence from "./EmojiSequence";
 
-const emojisMock = [
+const emojisIdle = [
   { name: '😀' },
   { name: '☺️' },
   { name: '🤔' },
   { name: '😌' }
 ];
+
+const emojisParty = [
+  { name: '🚀' },
+  { name: '🎉' },
+  { name: '🍻' },
+];
+
+const emojisNewPerson = [
+  { name: '👋' },
+  { name: '😊' },
+  { name: '🤖' },
+];
+
+const emojisPersonLeaving = [
+  { name: '👋' },
+  { name: '😥' },
+  { path: 'img/sad_pepe.png' },
+];
+
+const appointmentEmojis = [
+  { name: '📅' },
+  { name: '☝️' }
+];
+
+const emojisCollection = {
+  emojisIdle: emojisIdle,
+  emojisParty: emojisParty,
+  emojisNewPerson: emojisNewPerson,
+  emojisPersonLeaving: emojisPersonLeaving,
+  appointmentEmojis: appointmentEmojis
+};
 
 export default class App extends Component {
 
@@ -24,7 +55,7 @@ export default class App extends Component {
     return (
       <RobotConnection robotUtils={this.props.robotUtils}>
         <div className={'content'}>
-          <EmojiSequence emojis={emojisMock} />
+          <EmojiSequence emojiCollection={emojisCollection} />
         </div>
       </RobotConnection>
     );

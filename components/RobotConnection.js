@@ -8,39 +8,38 @@ class RobotConnection extends Component {
     super(props);
     this.state = {
       robotUtils: props.robotUtils,
-      session: null,
-      ALMemory: null,
+      robotApp: null,
+      activeEmojiSet: 'emojisIdle'
     }
   }
 
-  onRobotConnectionSuccessful = (session) => {
-    console.log('got session', session);
+  faceRecognized = (face) => {
+    console.log("face recognized", face);
     this.setState({
-      session: session
+      activeEmojiSet: 'emojisNewPerson'
     });
   };
 
-  onRobotConnectionFailed = () => {
-    console.log("Failed to connect to robot!");
-  };
-
-  subscribeToALMemoryEvent = (event, eventCallback, subscribeDoneCallback) => {
-    const evt = new this.state.robotUtils.MemoryEventSubscription(event);
-    self.onServices((ALMemory) => {
-      ALMemory.subscriber(event).then((sub) => {
-        evt.setSubscriber(sub);
-        sub.signal.connect(eventCallback).then((id) => {
-          evt.setId(id);
-          if (subscribeDoneCallback) subscribeDoneCallback(id);
+  targetLost = () => {
+    console.log("face lost");
+    this.setState({
+      activeEmojiSet: 'emojisPersonLeaving'
+    }, () => {
+      setTimeout(() => {
+        this.setState({
+          activeEmojiSet: 'emojisIdle'
         });
-      },
-      this.state.robotUtils.onALMemoryError);
+      }, 12000);
     });
-    return evt;
   };
 
   componentDidMount() {
-    RobotUtils.connect(this.onRobotConnectionSuccessful, this.onRobotConnectionFailed);
+    window._faceRecognized = this.faceRecognized;
+    window._targetLost = this.targetLost;
+    const robotApp = this.state.robotUtils();
+    this.setState({
+      robotApp: robotApp
+    });
   }
 
   render() {
@@ -55,11 +54,7 @@ class RobotConnection extends Component {
 const withRobotConnection = (Component) => {
   return (props) => (
     <Consumer>
-      {(robotConnectionState) => {
-        return (
-          <Component {...props} robotConnection={robotConnectionState} />
-        );
-      }}
+      {(robotConnectionState) => (<Component {...props} robotConnection={robotConnectionState} />)}
     </Consumer>
   );
 
