@@ -5,7 +5,7 @@ import withRobotConnection from "./RobotConnection";
 class EmojiSequence extends Component {
 
   static defaultProps = {
-    intervalTime: 4000,
+    intervalTime: 2000,
     emojiCollection: {}
   };
 

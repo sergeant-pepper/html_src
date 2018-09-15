@@ -59,13 +59,13 @@ const appointmentEmojis = [
 const appointmentEmojisPeter = [
   { name: '📅' },
   { path: 'img/calendar/Peter.png' },
-  { name: '☝️' }
+  //{ name: '☝️' }
 ];
 
 const appointmentEmojisMarkus = [
   { name: '📅' },
   { name: 'img/calendar/Markus.png' },
-  { name: '☝️' }
+  //{ name: '☝️' }
 ];
 
 const emojisCollection = {
