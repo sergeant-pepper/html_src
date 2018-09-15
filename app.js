@@ -21,7 +21,7 @@ var robotUtilsWrapper = function(){
     RobotUtils.subscribeToALMemoryEvent('ALTracker/TargetLost', window._targetLost);
   };
   var onError = function(){
-    log("Disconnected, or failed to connect :-(");
+    console.log("Disconnected, or failed to connect :-(");
   };
   var init = function(){
     console.log("initialize robots");
