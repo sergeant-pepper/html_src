@@ -17,8 +17,26 @@ const emojisParty = [
 
 const emojisNewPerson = [
   { name: '👋' },
+  { path: '🤖' },
   { name: '😊' },
-  { name: '🤖' },
+];
+
+const emojisNewPersonDavid = [
+  { name: '👋' },
+  { path: 'img/David.png' },
+  { name: '😊' },
+];
+
+const emojisNewPersonPeter = [
+  { name: '👋' },
+  { path: 'img/Peter.png' },
+  { name: '😊' },
+];
+
+const emojisNewPersonMarkus = [
+  { name: '👋' },
+  { path: 'img/Markus.png' },
+  { name: '😊' },
 ];
 
 const emojisPersonLeaving = [
@@ -27,8 +45,26 @@ const emojisPersonLeaving = [
   { path: 'img/sad_pepe.png' },
 ];
 
+const emojiSadPerson = [
+  { name: '🤔' },
+  { name: '💡' },
+  { path: 'img/party_parrot.gif' }
+];
+
 const appointmentEmojis = [
   { name: '📅' },
+  { name: '☝️' }
+];
+
+const appointmentEmojisPeter = [
+  { name: '📅' },
+  { path: 'img/calendar/Peter.png' },
+  { name: '☝️' }
+];
+
+const appointmentEmojisMarkus = [
+  { name: '📅' },
+  { name: 'img/calendar/Markus.png' },
   { name: '☝️' }
 ];
 
@@ -36,8 +72,14 @@ const emojisCollection = {
   emojisIdle: emojisIdle,
   emojisParty: emojisParty,
   emojisNewPerson: emojisNewPerson,
+  emojisNewPersonDavid: emojisNewPersonDavid,
+  emojisNewPersonPeter: emojisNewPersonPeter,
+  emojisNewPersonMarkus: emojisNewPersonMarkus,
   emojisPersonLeaving: emojisPersonLeaving,
-  appointmentEmojis: appointmentEmojis
+  appointmentEmojis: appointmentEmojis,
+  appointmentEmojisPeter: appointmentEmojisPeter,
+  appointmentEmojisMarkus: appointmentEmojisMarkus,
+  emojiSadPerson: emojiSadPerson
 };
 
 export default class App extends Component {

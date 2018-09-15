@@ -13,10 +13,51 @@ class RobotConnection extends Component {
     }
   }
 
-  faceRecognized = (face) => {
-    console.log("face recognized", face);
+  faceRecognized = (person) => {
+    console.log("face recognized", person);
+    let emojisNewPerson = 'emojisNewPerson';
+    switch(person) {
+      case 'David':
+        emojisNewPerson = 'emojisNewPersonDavid';
+        break;
+      case 'Peter':
+        emojisNewPerson = 'emojisNewPersonPeter';
+        break;
+      case 'Markus':
+        emojisNewPerson = 'emojisNewPersonMarkus';
+        break;
+    }
     this.setState({
-      activeEmojiSet: 'emojisNewPerson'
+      activeEmojiSet: emojisNewPerson
+    });
+  };
+
+  sadPerson = (person) => {
+    console.log("sad person", person);
+    let emojisSadPerson = 'emojiSadPerson';
+    switch(person) {
+      case 'David':
+        emojisSadPerson = 'emojiSadPerson';
+        break;
+    }
+    this.setState({
+      activeEmojiSet: emojisSadPerson
+    });
+  };
+
+  calendarReminder = (person) => {
+    console.log("calendar reminder", person);
+    let emojisCalendarReminder = 'appointmentEmojis';
+    switch(person) {
+      case 'Peter':
+        emojisCalendarReminder = 'appointmentEmojisPeter';
+        break;
+      case 'Markus':
+        emojisCalendarReminder = 'appointmentEmojisMarkus';
+        break;
+    }
+    this.setState({
+      activeEmojiSet: emojisCalendarReminder
     });
   };
 
@@ -36,6 +77,8 @@ class RobotConnection extends Component {
   componentDidMount() {
     window._faceRecognized = this.faceRecognized;
     window._targetLost = this.targetLost;
+    window._sadPerson = this.sadPerson;
+    window._calendarReminder = this.calendarReminder;
     const robotApp = this.state.robotUtils();
     this.setState({
       robotApp: robotApp
