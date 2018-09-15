@@ -8,12 +8,12 @@ var robotUtilsWrapper = function(){
 
   /*QiSession Events*/
   var onConnected = function (session) {
-    log('connected');
+    console.log('connected');
     session.service('ALMemory').then(function (serv) {
       ALMemory = serv;
     },
     function (error) {
-      log('Unable to get the service ALMemory: ' + error);
+      console.log('Unable to get the service ALMemory: ' + error);
     });
     RobotUtils.subscribeToALMemoryEvent('FACE_RECOGNIZED', window._faceRecognized);
     RobotUtils.subscribeToALMemoryEvent('SAD_PERSON', window._sadPerson);
