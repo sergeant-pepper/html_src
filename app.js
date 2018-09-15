@@ -4,7 +4,7 @@ import App from './components/App';
 import './global.css';
 
 var robotUtilsWrapper = function(){
-
+  var ALMemory = null;
 
   /*QiSession Events*/
   var onConnected = function (session) {
