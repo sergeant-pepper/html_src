@@ -9,7 +9,8 @@ class RobotConnection extends Component {
     this.state = {
       robotUtils: props.robotUtils,
       robotApp: null,
-      activeEmojiSet: 'emojisIdle'
+      activeEmojiSet: 'emojisIdle',
+      pendingEmojiSet: null
     }
   }
 
@@ -29,6 +30,9 @@ class RobotConnection extends Component {
     }
     this.setState({
       activeEmojiSet: emojisNewPerson
+    }, () => {
+      this.resetEmojiQueue();
+      console.log("active emoji set is now", emojisNewPerson);
     });
   };
 
@@ -42,6 +46,9 @@ class RobotConnection extends Component {
     }
     this.setState({
       activeEmojiSet: emojisSadPerson
+    }, () => {
+      this.resetEmojiQueue();
+      console.log("active emoji set is now", emojisSadPerson);
     });
   };
 
@@ -58,6 +65,9 @@ class RobotConnection extends Component {
     }
     this.setState({
       activeEmojiSet: emojisCalendarReminder
+    }, () => {
+      this.resetEmojiQueue();
+      console.log("active set is now", emojisCalendarReminder);
     });
   };
 
@@ -66,12 +76,32 @@ class RobotConnection extends Component {
     this.setState({
       activeEmojiSet: 'emojisPersonLeaving'
     }, () => {
-      setTimeout(() => {
+      this.resetEmojiQueue(() => {
+        const timeout = setTimeout(() => {
+          this.setState({
+            activeEmojiSet: 'emojisIdle'
+          });
+        }, 6000);
         this.setState({
-          activeEmojiSet: 'emojisIdle'
+          pendingEmojiSet: timeout
         });
-      }, 12000);
+      });
+      console.log("active set is now", 'emojisPersonLeaving');
     });
+  };
+
+  resetEmojiQueue = (cb) => {
+    console.log("resetting emoji queue");
+    if(this.state.pendingEmojiSet) {
+      clearTimeout(this.state.pendingEmojiSet);
+      this.setState({
+        pendingEmojiSet: null
+      }, () => {
+        if(typeof cb === 'function') {
+          cb();
+        }
+      });
+    }
   };
 
   componentDidMount() {

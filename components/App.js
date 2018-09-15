@@ -45,7 +45,7 @@ const emojisPersonLeaving = [
   { path: 'img/sad_pepe.png' },
 ];
 
-const emojiSadPerson = [
+const emojisSadPerson = [
   { name: '🤔' },
   { name: '💡' },
   { path: 'img/party_parrot.gif' }
@@ -79,7 +79,7 @@ const emojisCollection = {
   appointmentEmojis: appointmentEmojis,
   appointmentEmojisPeter: appointmentEmojisPeter,
   appointmentEmojisMarkus: appointmentEmojisMarkus,
-  emojiSadPerson: emojiSadPerson
+  emojisSadPerson: emojisSadPerson
 };
 
 export default class App extends Component {

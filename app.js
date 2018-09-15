@@ -24,6 +24,7 @@ var robotUtilsWrapper = function(){
     log("Disconnected, or failed to connect :-(");
   };
   var init = function(){
+    console.log("initialize robots");
     RobotUtils.connect(onConnected, onError);
     return this;
   };
