@@ -103,6 +103,8 @@ class RobotConnection extends Component {
           }, 6000);
           this.setState({
             pendingEmojiSet: timeout
+          }, () => {
+            console.log("timeout is set to display ", 'emojisIdle', this.state.pendingEmojiSet);
           });
         });
         console.log("active set is now", 'emojisPersonLeaving');
@@ -121,6 +123,11 @@ class RobotConnection extends Component {
           cb();
         }
       });
+    } else {
+      if(typeof cb === 'function') {
+        console.log("nothing to clear, call cb");
+        cb();
+      }
     }
   };
 
