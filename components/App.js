@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const App = () => (
-  <div>
-    <span>Hello from react! </span>
-    <img src="./img/banana_parrot.gif" alt=""/>
-  </div>
-);
+export default class App extends Component {
 
-export default App;
+  constructor(props) {
+    super(props);
+    this.state = {
+      emoji: 'img/banana_parrot.gif'
+    };
+  }
+
+  render() {
+    const { emoji } = this.state;
+    return (
+      <img src={emoji} alt="emoji" />
+    );
+  }
+};
