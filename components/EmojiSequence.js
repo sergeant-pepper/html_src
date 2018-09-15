@@ -13,18 +13,13 @@ class EmojiSequence extends Component {
     super(props);
     this.state = {
       interval: null,
-      currentEmojiIndex: 0
     };
   }
 
   nextEmoji = () => {
-    const emojiIndex = this.state.currentEmojiIndex >= this.props.emojiCollection[this.props.robotConnection.activeEmojiSet].length - 1 ? 0 : this.state.currentEmojiIndex + 1;
-    console.log("set emoji index to", emojiIndex);
-    this.setState({
-      currentEmojiIndex: emojiIndex
-    }, () => {
-      console.log("emoji index is set", this.state.currentEmojiIndex);
-    });
+    const emojiIndex = this.props.setIndex >= this.props.emojiCollection[this.props.robotConnection.activeEmojiSet].length - 1 ? 0 : this.props.setIndex + 1;
+    console.log("update emoji index to", emojiIndex);
+    this.props.updateSetIndex(emojiIndex);
   };
 
   componentDidMount() {
@@ -75,9 +70,9 @@ class EmojiSequence extends Component {
       emojiSet = this.props.emojiCollection[this.props.robotConnection.activeEmojiSet];
       console.log("emojiSet found", emojiSet);
     }
-    console.log("using set", emojiSet[this.state.currentEmojiIndex]);
-    if(emojiSet && emojiSet[this.state.currentEmojiIndex]) {
-      const currentEmoji = emojiSet[this.state.currentEmojiIndex];
+    console.log("using set", emojiSet[this.props.setIndex]);
+    if(emojiSet && emojiSet[this.props.setIndex]) {
+      const currentEmoji = emojiSet[this.props.setIndex];
       return (
         <Emoji path={currentEmoji.path} svg name={currentEmoji.name} />
       );

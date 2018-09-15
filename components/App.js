@@ -91,13 +91,28 @@ export default class App extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      setIndex: 0
+    }
   }
+
+  resetSetIndex = () => {
+    this.setState({
+      setIndex: 0
+    })
+  };
+
+  updateSetIndex = (index) => {
+    this.setState({
+      setIndex: index
+    })
+  };
 
   render() {
     return (
-      <RobotConnection robotUtils={this.props.robotUtils}>
+      <RobotConnection robotUtils={this.props.robotUtils} resetSetIndex={this.resetSetIndex}>
         <div className={'content'}>
-          <EmojiSequence emojiCollection={emojisCollection} />
+          <EmojiSequence emojiCollection={emojisCollection} setIndex={this.state.setIndex} updateSetIndex={this.updateSetIndex} />
         </div>
       </RobotConnection>
     );
