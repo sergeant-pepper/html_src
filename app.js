@@ -33,5 +33,5 @@ var application = function(){
 };
 
 ReactDOM.render((
-  <App robotUtils={RobotUtils} qiHost={host} />
+  <App robotUtils={RobotUtils} />
 ), document.getElementById('root'));
