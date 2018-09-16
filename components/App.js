@@ -4,8 +4,12 @@ import EmojiSequence from "./EmojiSequence";
 
 const emojisIdle = [
   { name: '😀' },
+  { name: '😀' },
+  { name: '☺️' },
   { name: '☺️' },
   { name: '🤔' },
+  { name: '🤔' },
+  { name: '😌' },
   { name: '😌' }
 ];
 
