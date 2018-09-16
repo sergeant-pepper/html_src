@@ -48,6 +48,9 @@ const emojisPersonLeaving = [
 const emojisSadPerson = [
   { name: '🤔' },
   { name: '💡' },
+  { path: 'img/party_parrot.gif' },
+  { path: 'img/party_parrot.gif' },
+  { path: 'img/party_parrot.gif' },
   { path: 'img/party_parrot.gif' }
 ];
 
