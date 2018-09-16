@@ -9,7 +9,6 @@ class RobotConnection extends Component {
     this.state = {
       robotUtils: props.robotUtils,
       robotApp: null,
-      activeEmojiSet: 'emojisIdle',
       pendingEmojiSet: null,
       activeMode: 'idle'
     }
@@ -32,9 +31,9 @@ class RobotConnection extends Component {
         emojisNewPerson = 'emojisNewPersonMarkus';
         break;
     }
-    if(this.state.activeEmojiSet !== emojisNewPerson) {
+    if(this.props.activeEmojiSet !== emojisNewPerson) {
+      this.props.onEmojiCollectionChanged(emojisNewPerson);
       this.setState({
-        activeEmojiSet: emojisNewPerson,
         activeMode: 'personDetected'
       }, () => {
         this.resetEmojiQueue();
@@ -54,9 +53,9 @@ class RobotConnection extends Component {
         emojisSadPerson = 'emojisSadPerson';
         break;
     }
-    if(this.state.activeEmojiSet !== emojisSadPerson) {
+    if(this.props.activeEmojiSet !== emojisSadPerson) {
+      this.props.onEmojiCollectionChanged(emojisSadPerson);
       this.setState({
-        activeEmojiSet: emojisSadPerson,
         activeMode: 'sadPerson'
       }, () => {
         this.resetEmojiQueue();
@@ -79,9 +78,9 @@ class RobotConnection extends Component {
         emojisCalendarReminder = 'appointmentEmojisMarkus';
         break;
     }
-    if(this.state.activeEmojiSet !== emojisCalendarReminder) {
+    if(this.props.activeEmojiSet !== emojisCalendarReminder) {
+      this.props.onEmojiCollectionChanged(emojisCalendarReminder);
       this.setState({
-        activeEmojiSet: emojisCalendarReminder,
         activeMode: 'calendarReminder'
       }, () => {
         this.resetEmojiQueue();
@@ -92,19 +91,20 @@ class RobotConnection extends Component {
 
   targetLost = () => {
     const triggerFromModes = ['calendarReminder', 'sadPerson', 'personDetected'];
-    if(triggerFromModes.includes(this.state.activeMode)) {
+    if(triggerFromModes.includes(this.state.activeMode) || true) {
       console.log("face lost");
       if(this.props.resetSetIndex) {
         this.props.resetSetIndex();
       }
-      if(this.state.activeEmojiSet !== 'emojisPersonLeaving') {
+      if(this.props.activeEmojiSet !== 'emojisPersonLeaving') {
+        this.props.onEmojiCollectionChanged('emojisPersonLeaving');
         this.setState({
-          activeEmojiSet: 'emojisPersonLeaving'
+          activeMode: 'emojisPersonLeaving'
         }, () => {
           this.resetEmojiQueue(() => {
             const timeout = setTimeout(() => {
               this.setState({
-                activeEmojiSet: 'emojisIdle'
+                activeMode: 'emojisIdle'
               });
             }, 6000);
             this.setState({

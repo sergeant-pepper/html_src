@@ -92,7 +92,8 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      setIndex: 0
+      setIndex: 0,
+      currentEmojiCollection: 'emojisIdle'
     }
   }
 
@@ -108,11 +109,18 @@ export default class App extends Component {
     })
   };
 
+  updateCurrentEmojiCollection = (emojiCollection) => {
+    this.setState({
+      currentEmojiCollection: emojiCollection
+    })
+  };
+
   render() {
+    //const currentEmoji = emojisCollection[this.state.currentEmojiCollection][this.state.setIndex].name;
     return (
-      <RobotConnection robotUtils={this.props.robotUtils} resetSetIndex={this.resetSetIndex}>
+      <RobotConnection activeEmojiSet={this.state.currentEmojiCollection} robotUtils={this.props.robotUtils} resetSetIndex={this.resetSetIndex} onEmojiCollectionChanged={this.updateCurrentEmojiCollection}>
         <div className={'content'}>
-          <EmojiSequence emojiCollection={emojisCollection} setIndex={this.state.setIndex} updateSetIndex={this.updateSetIndex} />
+          <EmojiSequence onModeChange={this.updateCurrentEmojiCollection} emojiCollection={emojisCollection} setIndex={this.state.setIndex} updateSetIndex={this.updateSetIndex} activeEmojiSet={this.state.currentEmojiCollection} />
         </div>
       </RobotConnection>
     );

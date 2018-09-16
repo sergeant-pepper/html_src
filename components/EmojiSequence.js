@@ -17,9 +17,14 @@ class EmojiSequence extends Component {
   }
 
   nextEmoji = () => {
-    const emojiIndex = this.props.setIndex >= this.props.emojiCollection[this.props.robotConnection.activeEmojiSet].length - 1 ? 0 : this.props.setIndex + 1;
+    const emojiIndex = this.props.setIndex >= this.props.emojiCollection[this.props.activeEmojiSet].length - 1 ? this.setModeToIdle() : this.props.setIndex + 1;
     console.log("update emoji index to", emojiIndex);
     this.props.updateSetIndex(emojiIndex);
+  };
+
+  setModeToIdle = () => {
+    this.props.onModeChange('emojisIdle');
+    return 0;
   };
 
   componentDidMount() {
@@ -48,7 +53,7 @@ class EmojiSequence extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.robotConnection.activeEmojiSet !== prevProps.robotConnection.activeEmojiSet) {
+    if (this.props.activeEmojiSet !== prevProps.activeEmojiSet) {
       this.clearInterval(() => {
         this.setState({
           currentEmojiIndex: 0
@@ -66,8 +71,8 @@ class EmojiSequence extends Component {
 
   render () {
     let emojiSet = [];
-    if(this.props.robotConnection && this.props.robotConnection.activeEmojiSet) {
-      emojiSet = this.props.emojiCollection[this.props.robotConnection.activeEmojiSet];
+    if(this.props.activeEmojiSet) {
+      emojiSet = this.props.emojiCollection[this.props.activeEmojiSet];
       console.log("emojiSet found", emojiSet);
     }
     console.log("using set", emojiSet[this.props.setIndex]);
