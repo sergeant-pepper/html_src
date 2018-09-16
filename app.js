@@ -18,6 +18,7 @@ var robotUtilsWrapper = function(){
     RobotUtils.subscribeToALMemoryEvent('FACE_RECOGNIZED', window._faceRecognized);
     RobotUtils.subscribeToALMemoryEvent('SAD_PERSON', window._sadPerson);
     RobotUtils.subscribeToALMemoryEvent('CALENDAR_REMINDER', window._calendarReminder);
+    RobotUtils.subscribeToALMemoryEvent('BAD_ACCOUNT_BALANCE', window._badAccountBalance);
     RobotUtils.subscribeToALMemoryEvent('ALTracker/TargetLost', window._targetLost);
   };
   var onError = function(){

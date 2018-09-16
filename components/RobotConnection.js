@@ -64,6 +64,22 @@ class RobotConnection extends Component {
     }
   };
 
+  badAccountBalance = () => {
+    console.log("bad account balance");
+    if(this.props.resetSetIndex) {
+      this.props.resetSetIndex();
+    }
+    if(this.props.activeEmojiSet !== 'emojisBadAccountBalance') {
+      this.props.onEmojiCollectionChanged('emojisBadAccountBalance');
+      this.setState({
+        activeMode: 'badAccountBalance'
+      }, () => {
+        this.resetEmojiQueue();
+        console.log("active emoji set is now", 'emojisBadAccountBalance');
+      });
+    }
+  };
+
   calendarReminder = (person) => {
     console.log("calendar reminder", person);
     if(this.props.resetSetIndex) {
@@ -144,6 +160,7 @@ class RobotConnection extends Component {
     window._targetLost = this.targetLost;
     window._sadPerson = this.sadPerson;
     window._calendarReminder = this.calendarReminder;
+    window._badAccountBalance = this.badAccountBalance;
     const robotApp = this.state.robotUtils();
     this.setState({
       robotApp: robotApp

@@ -19,6 +19,12 @@ const emojisParty = [
   { name: '🍻' },
 ];
 
+const emojisBadAccountBalance = [
+  { path: 'img/sad_pepe.png' },
+  { name: '💸' },
+  { name: '🍻' },
+];
+
 const emojisNewPerson = [
   { name: '👋' },
   { path: '🤖' },
@@ -86,7 +92,8 @@ const emojisCollection = {
   appointmentEmojis: appointmentEmojis,
   appointmentEmojisPeter: appointmentEmojisPeter,
   appointmentEmojisMarkus: appointmentEmojisMarkus,
-  emojisSadPerson: emojisSadPerson
+  emojisSadPerson: emojisSadPerson,
+  emojisBadAccountBalance: emojisBadAccountBalance
 };
 
 export default class App extends Component {
