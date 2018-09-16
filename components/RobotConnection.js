@@ -127,6 +127,7 @@ class RobotConnection extends Component {
         pendingEmojiSet: null
       }, () => {
         if(typeof cb === 'function') {
+          console.log("emoji queue cleared");
           cb();
         }
       });
